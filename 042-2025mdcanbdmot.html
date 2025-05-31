@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MDCAN BDM 042-2025</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #001f3f;
+      --green: #28a745;
+      --yellow: #ffc107;
+      --white: #ffffff;
+      --gray-bg: #f8f9fa;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html { height: 100%; font-family: 'Open Sans', sans-serif; background: var(--gray-bg); color: var(--navy); }
+
+    /* Banner */
+    .banner {
+      position: relative;
+      background: var(--green) url('banner.jpg') no-repeat center/cover;
+      text-align: center;
+      padding: 4rem 1rem;
+      color: var(--white);
+    }
+    .banner::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+    }
+    .banner h1, .banner p {
+      position: relative;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .banner h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .banner p {
+      font-size: 1.25rem;
+      font-weight: 400;
+    }
+
+    /* Countdown */
+    .countdown-container {
+      text-align: center;
+      background: var(--navy);
+      color: var(--yellow);
+      padding: 1rem;
+    }
+    .countdown {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    /* Navigation */
+    nav { background: var(--white); padding: 1rem; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .btn {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      padding: 0.6rem 1.2rem;
+      margin: 0.3rem;
+      border: none;
+      border-radius: 0.3rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .btn[disabled] { opacity: 0.5; cursor: not-allowed; }
+    .btn-primary { background: var(--navy); color: var(--white); }
+    .btn-primary:hover:not([disabled]) { background: #001735; }
+    .btn-accent { background: var(--yellow); color: var(--navy); }
+    .btn-accent:hover:not([disabled]) { background: #e6b800; }
+    .btn-success { background: var(--green); color: var(--white); }
+    .btn-success:hover:not([disabled]) { background: #218838; }
+
+    /* Pages */
+    .page { display: none; padding: 2rem 1rem; max-width: 800px; margin: 0 auto; }
+    .page.active { display: block; }
+    h2, h3 { font-family: 'Montserrat', sans-serif; margin: 1.5rem 0 0.5rem; }
+    ul { list-style: disc inside; margin-bottom: 1.5rem; }
+
+    /* Payment highlight */
+    .fee-item { transition: background 0.3s; }
+    .highlight { background: var(--yellow); color: var(--navy); font-weight: 700; border-radius: 0.2rem; padding: 0.2rem; }
+
+    form { max-width: 400px; margin: 1rem auto; }
+    label { display: block; margin: 0.5rem 0 0.2rem; }
+    input[type="file"] { margin-bottom: 1rem; }
+
+    @media (max-width: 600px) {
+      .banner h1 { font-size: 2.5rem; }
+      .banner p { font-size: 1rem; }
+      .countdown { font-size: 1.5rem; }
+      .page { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Banner -->
+  <div class="banner">
+    <h1>Welcome to MDCAN BDM 042‑2025</h1>
+    <p><em>Otanisi Psychosis: The mental health implications of Nigeria's socio-economic shifts</em></p>
+  </div>
+
+  <!-- Countdown -->
+  <div class="countdown-container">
+    <div class="countdown" id="countdown"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav>
+    <button class="btn btn-primary" onclick="showPage('welcome')">Welcome</button>
+    <button class="btn btn-accent" onclick="showPage('registration')">Registration</button>
+    <button id="delegateNav" class="btn btn-success" onclick="showPage('delegate')" disabled>Delegate Details</button>
+  </nav>
+
+  <!-- Welcome Page -->
+  <section id="welcome" class="page active">
+    <h2>Sub‑themes</h2>
+    <ul>
+      <li>Medical migration syndrome: fortune and misfortunes</li>
+      <li>Physician heal thyself: The mismatch between knowledge and practice</li>
+    </ul>
+
+    <h2>Programme of Events</h2>
+
+    <h3>Monday 1st Sept 2025</h3>
+    <ul>
+      <li>Arrival of NOC... all day</li>
+      <li>NOC ‑ LOC Meeting .. 7 pm</li>
+    </ul>
+
+    <h3>Tuesday 2nd Sept 2025</h3>
+    <ul>
+      <li>Courtesy visits.... all day</li>
+      <li>Arrival of delegates... all day</li>
+      <li>Medical outreach... all day</li>
+      <li>Welcome, cocktail... 7 pm</li>
+    </ul>
+
+    <h3>Wednesday 3rd Sept 2025</h3>
+    <ul>
+      <li>Registration 7 ‑ 8 am</li>
+      <li>First Scientific session 8 ‑ 10:30 am</li>
+      <li>Tea Break 10:30 ‑ 11 am</li>
+      <li>Second session 11 am ‑ 12 noon</li>
+      <li>Sub‑theme lecture 12 ‑ 1:30 pm</li>
+      <li>Lunch 1:30 ‑ 2:30 pm</li>
+      <li>NEC 1 3 ‑ 5 pm</li>
+    </ul>
+
+    <h3>Thursday 4th Sept 2025</h3>
+    <ul>
+      <li>Registration 7 ‑ 8 am</li>
+      <li>Third session 8 ‑ 9:30 am</li>
+      <li>Tea Break 10 ‑ 11 am</li>
+      <li>Opening Ceremony 11 am ‑ 1 pm</li>
+      <li>Theme lecture 11:45 am ‑ 12:30 pm</li>
+      <li>Lunch 1 ‑ 2 pm</li>
+      <li>Product Presentation 2 ‑ 2:30 pm</li>
+      <li>NEC 2 3 ‑ 5 pm</li>
+    </ul>
+
+    <h3>Friday 5th Sept 2025</h3>
+    <ul>
+      <li>Sub‑theme lecture 9:30 ‑ 10:15 am</li>
+      <li>Tea Break 10:15 ‑ 11 am</li>
+      <li>Product Presentation 11 ‑ 11:30 am</li>
+      <li>Lunch/Prayers 11:30 ‑ 2 pm</li>
+      <li>BDM & Election, Dinner</li>
+    </ul>
+
+    <h3>Saturday 6th Sept 2025</h3>
+    <ul>
+      <li>Press Conference</li>
+      <li>Departure!</li>
+    </ul>
+
+    <button class="btn btn-success" onclick="showPage('registration')">Register Now</button>
+  </section>
+
+  <!-- Registration Page -->
+  <section id="registration" class="page">
+    <h2>Payment Details</h2>
+    <ul>
+      <li id="early" class="fee-item">Early bird (≤ June 30, 2025): ₦100,000</li>
+      <li id="late" class="fee-item">Late (July 1 ‑ Aug 31, 2025): ₦120,000</li>
+      <li id="onsite" class="fee-item">Onsite (from Sept 1, 2025): ₦150,000</li>
+    </ul>
+    <p><strong>Account:</strong> MDCAN BDM ENUGU | <strong>Bank:</strong> UBA | <strong>No.:</strong> 1027616784</p>
+
+    <form id="payForm">
+      <label for="evidence">Upload Evidence of Payment:</label>
+      <input type="file" id="evidence" name="evidence" accept="image/*,application/pdf" required />
+      <button type="submit" class="btn btn-primary">Register &amp; Continue</button>
+    </form>
+  </section>
+
+  <!-- Delegate Details Page -->
+  <section id="delegate" class="page">
+    <h2>Delegate Details &amp; Links</h2>
+    <p><a href="https://chat.whatsapp.com/E0JkGqBhM362Z2fwHyiv8k" target="_blank" class="btn btn-accent">Join WhatsApp Group</a></p>
+    <p><a href="https://forms.gle/9x2iAsxWTfexTzeN9" target="_blank" class="btn btn-accent">Delegate Registration Form</a></p>
+  </section>
+
+  <script>
+    // Navigation
+    function showPage(id) {
+      document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    // Countdown Timer
+    const target = new Date('2025-09-01T00:00:00');
+    function updateTimer() {
+      const diff = target - new Date();
+      if (diff <= 0) {
+        clearInterval(interval);
+        document.getElementById('countdown').textContent = 'Conference Started!';
+        return;
+      }
+      const d = Math.floor(diff/86400000);
+      const h = Math.floor((diff%86400000)/3600000);
+      const m = Math.floor((diff%3600000)/60000);
+      const s = Math.floor((diff%60000)/1000);
+      document.getElementById('countdown').textContent =
+        `Starts in ${d}d ${h}h ${m}m ${s}s`;
+    }
+    const interval = setInterval(updateTimer, 1000);
+    updateTimer();
+
+    // Highlight current fee
+    function updatePaymentHighlight() {
+      const now = new Date();
+      const earlyDeadline = new Date('2025-06-30T23:59:59');
+      const lateDeadline = new Date('2025-08-31T23:59:59');
+      document.querySelectorAll('.fee-item').forEach(el => el.classList.remove('highlight'));
+      if (now <= earlyDeadline) {
+        document.getElementById('early').classList.add('highlight');
+      } else if (now <= lateDeadline) {
+        document.getElementById('late').classList.add('highlight');
+      } else {
+        document.getElementById('onsite').classList.add('highlight');
+      }
+    }
+    updatePaymentHighlight();
+
+    // Handle form submission
+    document.getElementById('payForm').addEventListener('submit', e => {
+      e.preventDefault();
+      alert('Payment evidence uploaded successfully!');
+      document.getElementById('delegateNav').disabled = false;
+      showPage('delegate');
+    });
+  </script>
+</body>
+</html>
