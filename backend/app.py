@@ -6,7 +6,7 @@ from werkzeug.utils import secure_filename
 from models import db, User, Payment
 from config import Config
 
-app = Flask(__name__, static_folder='../frontend/build', static_url_path='/')
+app = Flask(__name__, static_folder=os.path.join(os.path.dirname(__file__), 'build'), static_url_path='/')
 app.config.from_object(Config)
 CORS(app, supports_credentials=True)
 
