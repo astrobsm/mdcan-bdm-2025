@@ -21,30 +21,39 @@ def allowed_file(filename):
 
 @app.route('/api/register', methods=['POST'])
 def register():
-    data = request.form
-    file = request.files.get('evidence')
-    if not file or not allowed_file(file.filename):
-        return jsonify({'error': 'Invalid or missing file'}), 400
-    filename = secure_filename(file.filename)
-    file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-    # Save user and payment
-    user = User(
-        full_name=data.get('full_name'),
-        email=data.get('email'),
-        phone=data.get('phone')
-    )
-    db.session.add(user)
-    db.session.commit()
-    payment = Payment(
-        user_id=user.id,
-        amount=int(data.get('amount', 0)),
-        payment_type=data.get('payment_type'),
-        evidence_filename=filename
-    )
-    db.session.add(payment)
-    db.session.commit()
-    return jsonify({'message': 'Registration successful'})
-
+    import logging
+    logging.basicConfig(level=logging.INFO)
+    try:
+        data = request.form
+        file = request.files.get('evidence')
+        logging.info(f"Received registration: data={data}, file={file}")
+        if not file or not allowed_file(file.filename):
+            logging.error("Invalid or missing file")
+            return jsonify({'error': 'Invalid or missing file'}), 400
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        # Save user and payment
+        user = User(
+            full_name=data.get('full_name'),
+            email=data.get('email'),
+            phone=data.get('phone')
+        )
+        db.session.add(user)
+        db.session.commit()
+        payment = Payment(
+            user_id=user.id,
+            amount=int(data.get('amount', 0)),
+            payment_type=data.get('payment_type'),
+            evidence_filename=filename
+        )
+        db.session.add(payment)
+        db.session.commit()
+        logging.info(f"Registration successful for user_id={user.id}")
+        return jsonify({'message': 'Registration successful'})
+    except Exception as e:
+        logging.exception("Error during registration")
+        return jsonify({'error': str(e)}), 500
+    
 @app.route('/api/delegates', methods=['GET'])
 def delegates():
     users = User.query.all()
